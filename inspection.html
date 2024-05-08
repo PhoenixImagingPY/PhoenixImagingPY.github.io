@@ -9,6 +9,53 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
+    <style>
+        /* Force checkboxes and labels to be in the same column */
+        .form-check-input {
+            margin-right: 5px; /* Optional: Add some spacing between checkbox and label */
+        }
+        .card-body {
+    width: 100%;
+        }
+ 
+        #defect-selection-table #defects-table-label {
+    height: 1em; /* Adjust as needed */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#defect-selection-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#defect-selection-table.table {
+    table-layout: fixed;
+}
+
+#defect-selection-table.table th,
+#defect-selection-table.table td {
+    width: auto; /* Reset column width */
+    text-align: left; /* Reset text alignment */
+}
+
+#defect-selection-table.table th:nth-child(1),
+#defect-selection-table.table td:nth-child(1) {
+    width: 25%; /* Adjust column width as needed */
+}
+
+#defect-selection-table.table th:nth-child(2),
+#defect-selection-table.table td:nth-child(2) {
+    width: 25%; /* Adjust column width as needed */
+}
+
+/* Add similar rules for other columns as needed */
+
+
+
+
+    </style>
 </head>
 
 <body id="page-top">
@@ -70,10 +117,13 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Inspections</h3>
+                <div class="container">
+                
+                <div class="row g-0">
+                    <h3 id="inspection-label" class="text-dark mb-4">Inspections</h3>
+                <div class=" col">
                     <div class="row mb-3">
-                        <div class="col-lg-8">
+                        <div class="col-lg-10">
                             <div class="row mb-3 d-none">
                                 <div class="col">
                                     <div class="card text-white bg-primary shadow">
@@ -104,125 +154,134 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- ********************** COLUMN 1 **************** -->
                             <div class="row">
                                 <div class="col">
                                     <div class="card shadow mb-3">
                                         <div class="card-header py-3">
-                                            <p class="text-primary m-0 fw-bold">Inspection Setup</p>
+                                            <p id="inspection-setup-module" class="text-primary m-0 fw-bold">Inspection Settings</p>
                                         </div>
                                         <div class="card-body">
                                             <form>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="username"><strong>NDC</strong></label>
-                                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Select NDC&nbsp;</button>
+                                                        <div class="mb-3"><label id="ndc-dropdown-label" class="form-label" for="username"><strong>Select NDC</strong></label>
+                                                            <div class="dropdown"><button id="ndc-dropdown-button" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">&nbsp;NDC&nbsp;</button>
                                                                 <div class="dropdown-menu"><a class="dropdown-item" href="#">NDC 0000-0000-01</a><a class="dropdown-item" href="#">NDC 0000-0000-02</a><a class="dropdown-item" href="#">NDC 0000-0000-03</a></div>
-                                                            </div><label class="form-label">OR enter a new NDC</label><input class="form-control" type="text" id="username" placeholder="New NDC" name="username">
+                                                            </div><label class="form-label">OR enter a new NDC</label><input id="ndc-textbox" class="form-control" type="text" placeholder="New NDC" name="username">
                                                         </div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Product Code</strong></label>
-                                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Select Code&nbsp;</button>
+                                                        <div class="mb-3">
+                                                            <label id="product-code-dropdown-label" class="form-label" for="product-code-dropdown-button">
+                                                                <strong>Select Product Code</strong></label>
+                                                                    <div class="dropdown"><button id="product-code-dropdown-button" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Product Code&nbsp;</button>
                                                                 <div class="dropdown-menu"><a class="dropdown-item" href="#">62GBA41</a><a class="dropdown-item" href="#">73HNS52</a><a class="dropdown-item" href="#">84TDE63</a></div>
-                                                            </div><label class="form-label">OR enter a new Product Code</label><input class="form-control" type="text" id="username-1" placeholder="New Product Code" name="username">
+                                                            </div><label class="form-label">OR Enter New Product Code</label><input id="product-code-textbox" class="form-control" type="text" placeholder="New Product Code" name="username">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="first_name"><strong>Operation Mode</strong></label>
+                                                            <label id="inspection-operation-mode-label" class="form-label" for="inspection-continuous-radio">
+                                                                <strong>Select Operation Mode</strong>
+                                                            </label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-op-mode-1" name="operation-mode" required>
-                                                                <label class="form-check-label" for="formCheck-op-mode-1">Continuous&nbsp;</label>
+                                                                <input id="continuous-mode-radio" class="form-check-input" type="radio" name="operation-mode" required>
+                                                                <label class="form-check-label" for="continuous-mode-radio">Continuous</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-op-mode-2" name="operation-mode" required>
-                                                                <label class="form-check-label" for="formCheck-op-mode-2">Indexed</label>
+                                                                <input id="indexed-mode-radio" class="form-check-input" type="radio"  name="operation-mode" required>
+                                                                <label class="form-check-label" for="indexed-mode-radio">Indexed</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-op-mode-3" name="operation-mode" required>
-                                                                <label class="form-check-label" for="formCheck-op-mode-3">Research</label>
+                                                                <input id="research-mode-radio" class="form-check-input" type="radio"  name="operation-mode" required>
+                                                                <label class="form-check-label" for="research-mode-radio">Research</label>
                                                             </div>
+                                                            
                                                         </div>
-                                                        
-                                                        
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="first_name"><strong>Data Collection Mode</strong></label>
+                                                            <label id="data-collection-mode-label" class="form-label" for="inspection-data-collection-mode">
+                                                                <strong>Select Data Collection Mode</strong>
+                                                            </label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-4" name="data-collection-mode">
-                                                                <label class="form-check-label" for="formCheck-4">Collect Data&nbsp;</label>
+                                                                <input id="collect-data-mode-radio" class="form-check-input" type="radio" name="data-collection-mode">
+                                                                <label class="form-check-label" for="inspection-collect-data-radio">Collect Data</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-5" name="data-collection-mode">
-                                                                <label class="form-check-label" for="formCheck-5">No Data</label>
+                                                                <input id="no-data-mode-radio" class="form-check-input" type="radio"  name="data-collection-mode">
+                                                                <label class="form-check-label" for="inspection-no-data-radio">No Data</label>
                                                             </div>
+                                                            
                                                         </div>
                                                         
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="last_name"><strong>Background Type</strong></label>
+                                                            <label id="background-type-label" class="form-label" for="background-type-radio"><strong>Select Background Type</strong></label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-6" name="background-type">
-                                                                <label class="form-check-label" for="formCheck-2">Light &amp; Dark Inspection&nbsp;</label>
+                                                                <input id="light-dark-type-radio" class="form-check-input" type="radio"  name="background-type">
+                                                                <label class="form-check-label" for="light-dark-type-radio">Light &amp; Dark Inspection</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-7" name="background-type">
-                                                                <label class="form-check-label" for="formCheck-5">Grey Card or Monochrome&nbsp;&nbsp;</label>
+                                                                <input id="grey-monochrome-type-radio" class="form-check-input" type="radio"  name="background-type">
+                                                                <label class="form-check-label" for="grey-monochrome-type-radio">Grey Card or Monochrome</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-8" name="background-type">
-                                                                <label class="form-check-label" for="formCheck-4">Light Inspection&nbsp;</label>
+                                                                <input id="light-type-radio" class="form-check-input" type="radio" name="background-type">
+                                                                <label class="form-check-label" for="light-type-radio">Light Inspection</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-9" name="background-type">
-                                                                <label class="form-check-label" for="formCheck-6">Dark Inspection&nbsp;</label>
+                                                                <input id="dark-type-radio" class="form-check-input" type="radio" name="background-type">
+                                                                <label class="form-check-label" for="dark-type-radio">Dark Inspection</label>
                                                             </div>
+                                                            
                                                         </div>
                                                         
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Operator Break Duration</strong></label></div><input class="form-control" type="number"><input class="form-range" type="range"><label class="form-label">Minutes</label>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Operator Inspection Duration</strong></label></div><input class="form-control" type="number"><input class="form-range" type="range"><label class="form-label">Minutes</label>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
+                                                        <div class="mb-3"><label id="break-duration-label" class="form-label" for="break-duration-textbox"><strong>Enter Operator Break Duration</strong></label></div><input id="break-duration-textbox" class="form-control" type="text" placeholder="00:00"><input id="break-duration-slider" class="form-range" type="range"><label class="form-label">Minutes</label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3"><label id="inspection-duration-label" class="form-label" for="inspection-duration-textbox"><strong>Enter Inspection Duration</strong></label></div><input id="inspection-duration-textbox" class="form-control" type="text" placeholder="00:00"><input id="inspection-duration-slider" class="form-range" type="range"><label class="form-label">Minutes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="first_name"><strong>Direction</strong></label>
+                                                            <label id="inspection-direction-label" class="form-label" for="inspection-direction"><strong>Select Inspection Direction</strong></label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-10" name="direction">
-                                                                <label class="form-check-label" for="formCheck-8">RIGHT-LEFT</label>
+                                                                <input id="right-left-inspection-radio" class="form-check-input" type="radio"  name="selected-direction">
+                                                                <label class="form-check-label" for="right-left-inspection-radio">RIGHT-LEFT</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-11" name="direction">
-                                                                <label class="form-check-label" for="formCheck-7">LEFT-RIGHT</label>
+                                                                <input id="left-right-inspection-radio" class="form-check-input" type="radio"  name="selected-direction">
+                                                                <label class="form-check-label" for="left-right-inspection-radio">LEFT-RIGHT</label>
                                                             </div>
                                                         </div>
                                                         
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="first_name"><strong>Light Position</strong></label>
+                                                            <label id="light-position-label" class="form-label" for="light-80mm-radio"><strong>Select Light Position</strong></label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-12" name="light-position">
-                                                                <label class="form-check-label" for="formCheck-12">80mm</label>
+                                                                <input id="light-80mm-radio" class="form-check-input" type="radio" name="light-position">
+                                                                <label class="form-check-label" for="light-80mm-radio">80mm</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-13" name="light-position">
-                                                                <label class="form-check-label" for="formCheck-13">210mm</label>
+                                                                <input id="light-210mm-radio" class="form-check-input" type="radio" name="light-position">
+                                                                <label class="form-check-label" for="light-210mm-radio">210mm</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-14" name="light-position">
-                                                                <label class="form-check-label" for="formCheck-14">340mm</label>
+                                                                <input id="light-340mm-radio" class="form-check-input" type="radio" name="light-position">
+                                                                <label class="form-check-label" for="light-340mm-radio">340mm</label>
                                                             </div>
+                                                            
                                                         </div>
                                                         
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Batch Number</strong></label><input class="form-control" type="number"></div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Date of Manufacture</strong></label><input class="form-control" type="date"></div>
+                                                        <div class="mb-3"><label id="batch-number-label"  class="form-label" for="batch-number-textbox"><strong>Enter Batch Number</strong></label><input id="batch-number-textbox" class="form-control" type="text"></div>
+                                                        <div class="mb-3"><label id="manufacture-date-label" class="form-label" for="manufacture-date-textbox"><strong>Enter Date of Manufacture</strong></label><input id="manufacture-date-textbox" class="form-control" type="date"></div>
                                                         <!-- <div class="mb-3"><label class="form-label" for="first_name"><strong>Tray Identification</strong></label>
                                                             <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-15"><label class="form-check-label" for="formCheck-12">Auto generate tray ID</label></div>
                                                             <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-16"><label class="form-check-label" for="formCheck-13">Operators will manually enter tray ID</label></div>
@@ -230,28 +289,29 @@
                                                             <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-18"><label class="form-check-label" for="formCheck-16">Bulk / Freeform Infeed&nbsp;</label></div>
                                                         </div> -->
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="tray_identification"><strong>Tray Identification</strong></label>
+                                                            <label id="tray-id-label" class="form-label" for="tray-identification"><strong>Select Tray Identification</strong></label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="auto_generate_tray_id" name="tray_identification" value="auto_generate">
-                                                                <label class="form-check-label" for="auto_generate_tray_id">Auto generate tray ID</label>
+                                                                <input id="auto-generatate-id-radio" class="form-check-input" type="radio" name="tray-identification" value="auto_generate">
+                                                                <label class="form-check-label" for="auto-generatate-id-radio">Auto generate tray ID</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="manual_tray_id_entry" name="tray_identification" value="manual_entry">
-                                                                <label class="form-check-label" for="manual_tray_id_entry">Operators will manually enter tray ID</label>
+                                                                <input id="manually-enter-id-radio" class="form-check-input" type="radio" name="tray-identification" value="manual_entry">
+                                                                <label class="form-check-label" for="manually-enter-id-radio">Operators will manually enter tray ID</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="no_tray_id" name="tray_identification" value="no_id">
-                                                                <label class="form-check-label" for="no_tray_id">No tray ID</label>
+                                                                <input id="no-id-radio" class="form-check-input" type="radio" name="tray-identification" value="no_id">
+                                                                <label class="form-check-label" for="no-id-radio">No tray ID</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="bulk_freeform_infeed" name="tray_identification" value="bulk_freeform">
-                                                                <label class="form-check-label" for="bulk_freeform_infeed">Bulk / Freeform Infeed</label>
+                                                                <input id="bulk-infeed-radio" class="form-check-input" type="radio" name="tray-identification" value="bulk_freeform">
+                                                                <label class="form-check-label" for="bulk-infeed-radio">Bulk / Freeform Infeed</label>
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Material</strong></label>
+                                                        
+                                                        <div class="mb-3"><label id="inspection-material-label" class="form-label" for="vial-material-dropdown-button"><strong>Select Materials</strong></label>
                                                             <div class="dropdown">
-                                                                <button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Select Vial Material&nbsp;</button>
+                                                                <button id="vial-material-dropdown-button" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Vial Material&nbsp;</button>
                                                                 <div class="dropdown-menu">
                                                                     <a class="dropdown-item" href="javascript:void(0);">Clear Glass</a>
                                                                     <a class="dropdown-item" href="javascript:void(0);">Amber Glass</a>
@@ -263,15 +323,13 @@
                                                                     <a class="dropdown-item" href="javascript:void(0);">Aluminum</a>
                                                                     <a class="dropdown-item" href="javascript:void(0);">Titanium</a>
                                                                 </div>
+                                                                
                                                             </div>
                                                             
                                                             
                                                             </div>
-                                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="margin-top: 18px;background: var(--bs-btn-bg);">Select Vial Type&nbsp;</button>
+                                                            <div class="dropdown"><button id="vial-type-dropdown-button" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="margin-top: 18px;background: var(--bs-btn-bg);">Vial Type&nbsp;</button>
                                                                 <div class="dropdown-menu">
-                                                                    <!-- <a class="dropdown-item" href="#">Amber</a> -->
-                                                                    <!-- <a class="dropdown-item" href="#">Cryogenic</a> -->
-                                                                    <!-- <a class="dropdown-item" href="#">Third Item</a> -->
                                                                     <a class="dropdown-item" href="javascript:void(0);">Autosampler</a>
                                                                     <a class="dropdown-item" href="javascript:void(0);">Cryogenic</a>
                                                                     <a class="dropdown-item" href="javascript:void(0);">Sample</a>
@@ -282,11 +340,11 @@
                                                                     <a class="dropdown-item" href="javascript:void(0);">Low Evaporation</a>
                                                                 </div>
                                                             </div>
-                                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="margin-top: 18px;background: var(--bs-btn-bg);">Select Seal Type&nbsp;</button>
+                                                            <div class="dropdown"><button id="seal-type-dropdown-button" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="margin-top: 18px;background: var(--bs-btn-bg);">Seal Type&nbsp;</button>
                                                                 <div class="dropdown-menu">
-                                                                    <!-- <a class="dropdown-item" href="#">Crimp</a> -->
-                                                                    <!-- <a class="dropdown-item" href="#">Snap-On</a> -->
-                                                                    <!-- <a class="dropdown-item" href="#">Screw Cap</a> -->
+                                                                    <a class="dropdown-item" href="javascript:void(0);">Crimp</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">Snap-On</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">Screw Cap</a>
                                                                     <a class="dropdown-item" href="javascript:void(0);">Aluminum Closure</a>
                                                                     <a class="dropdown-item" href="javascript:void(0);">Rubber Stopper</a>
 
@@ -299,86 +357,128 @@
                                                             <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-20"><label class="form-check-label" for="formCheck-18">No agitation required</label></div>
                                                         </div> -->
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="first_name"><strong>Agitation?</strong></label>
+                                                            <label id="agitation-label" class="form-label" for="agitation-required-radio"><strong>Is Agitation Required?</strong></label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-19" name="agitation-option" value="required">
-                                                                <label class="form-check-label" for="formCheck-19">Agitation required</label>
+                                                                <input id="agitation-required-radio" class="form-check-input" type="radio"  name="agitation-option" value="required">
+                                                                <label class="form-check-label" for="agitation-required-radio">Agitation required</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-20" name="agitation-option" value="not-required">
-                                                                <label class="form-check-label" for="formCheck-20">No agitation required</label>
+                                                                <input id="no-agitation-radio" class="form-check-input" type="radio"  name="agitation-option" value="not-required">
+                                                                <label class="form-check-label" for="no-agitation-radio">No agitation required</label>
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Light Intensity Setting</strong></label>
+                                                        <div class="mb-3"><label id="light-intensity-intensity-label" class="form-label"><strong>Light Intensity Setting</strong></label>
                                                             <div class="row">
-                                                                <div class="col"><label class="col-form-label">LUX</label></div>
-                                                            </div><input class="form-control" type="number" placeholder="1,000"><input class="form-range" type="range">
+                                                                <div class="col"><label id="lux-label" class="col-form-label">LUX</label></div>
+                                                            </div><input id="lux-textbox" class="form-control" type="number" placeholder="1,000"><input id="lux-slider" class="form-range" type="range">
                                                         </div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Power Level Setting</strong></label>
+                                                        <div class="mb-3"><label id="power-setting-label" class="form-label" for="first_name"><strong>Power Level Setting</strong></label>
                                                             <div class="row">
-                                                                <div class="col"><label class="col-form-label">Top Volts</label></div>
-                                                            </div><input class="form-control" type="number" placeholder="1,000"><input class="form-range" type="range">
-                                                            <div class="col"><label class="col-form-label">Bottom Volts</label></div><input class="form-control" type="number" placeholder="1,000"><input class="form-range" type="range">
+                                                                <div class="col"><label id="top-volts-label" class="col-form-label">Top Volts</label></div>
+                                                            </div><input id="top-volts-textbox" class="form-control" type="number" placeholder="0.0"><input id="top-volts-slider" class="form-range" type="range">
+                                                            <div class="col"><label id="bottom-volts-label" class="col-form-label">Bottom Volts</label></div><input id="bottom-volts-textbox" class="form-control" type="number" placeholder="0.0"><input id="bottom-volts-slider"  class="form-range" type="range">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="first_name"><strong>Disposition</strong></label>
+                                                            <label id="inspection-disposition-label" class="form-label"><strong>Select Disposition</strong></label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-21" name="disposition">
-                                                                <label class="form-check-label" for="formCheck-21">Auto PASS</label>
+                                                                <input id="auto-pass-radio" class="form-check-input" type="radio"  name="disposition">
+                                                                <label class="form-check-label" for="auto-pass-radio">Auto PASS</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="formCheck-22" name="disposition">
-                                                                <label class="form-check-label" for="formCheck-22">Auto FAIL</label>
+                                                                <input id="auto-fail-radio" class="form-check-input" type="radio" name="disposition">
+                                                                <label class="form-check-label" for="auto-fail-radio">Auto FAIL</label>
+
                                                             </div>
-                                                            <label class="form-label">Auto Disposition Delay&nbsp;</label>
-                                                            <input class="form-control" type="number" placeholder="1,000" disabled="">
-                                                            <input class="form-range" type="range" disabled="">
+                                                            <div class="form-check">
+                                                                <input id="manual-disposition-radio" class="form-check-input" type="radio" name="disposition">
+                                                                <label class="form-check-label" for="manual-disposition-radio">Manual</label>
+                                                            </div>
+                                                            <label id="dispostition-delay-label" class="form-label">Auto Disposition Delay&nbsp;</label>
+                                                            <input id="disposition-delay-textbox"  class="form-control" type="text" placeholder="00:00">
+                                                            <input id="disposition-delay-slider" class="form-range" type="range">
+                                                            <label class="form-label">Seconds</label>
                                                         </div>
                                                         
-                                                        <div class="mb-3"><label class="form-label" for="signature"><strong>Custom Defects</strong></label><textarea class="form-control" id="signature-1" rows="4" name="signature" placeholder="Seperate custom defects with comma."></textarea></div><button class="btn btn-primary btn-sm disabled" type="submit" style="background: var(--bs-form-valid-color);" disabled="">Save Defect</button>
-                                                        <div class="dropdown" style="margin-top: 18px;color: var(--bs-form-valid-border-color);margin-bottom: 28px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Select Defect Configuration&nbsp;</button>
+                                                        <label><strong>Select Defect Configuration</strong></label>
+                                                        <div class="dropdown" style="margin-top: 18px;color: var(--bs-form-valid-border-color);margin-bottom: 28px;"><button id="select-defect-config-dropdown-button" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Defect Configuration&nbsp;</button>
+                                                            <div id="defect-group-dropdown-menu-items" class="dropdown-menu"></div>
+                                                        </div>
+                                                        <!-- Remove these buttons -->
+                                                        <!-- <div class="dropdown" style="margin-top: 18px;color: var(--bs-form-valid-border-color);margin-bottom: 28px;"><button  id="inspection-booth-configuration-dropdown-box" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Select Booth Configuration&nbsp;</button>
                                                             <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
                                                         </div>
-                                                        <div class="dropdown" style="margin-top: 18px;color: var(--bs-form-valid-border-color);margin-bottom: 28px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Select Booth Configuration&nbsp;</button>
+                                                        <div class="dropdown" style="margin-top: 18px;color: var(--bs-form-valid-border-color);margin-bottom: 28px;"><button id="inspection-operator-group-dropdown-box" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Select Operator Group&nbsp;</button>
                                                             <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                                                        </div>
-                                                        <div class="dropdown" style="margin-top: 18px;color: var(--bs-form-valid-border-color);margin-bottom: 28px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Select Operator Group&nbsp;</button>
-                                                            <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <!-- <div class="mb-3"><label class="form-label" for="first_name"><strong>Diffuser</strong></label>
-                                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-23"><label class="form-check-label" for="formCheck-9">D1</label></div>
-                                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-24"><label class="form-check-label" for="formCheck-10">D2</label></div>
-                                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-25"><label class="form-check-label" for="formCheck-11">Base</label></div>
                                                         </div> -->
 
+                                                        <div  class="table-responsive">
+                                                            <label id="operator-table-label"><strong>Select Operators/Inspectors</strong></label>
+                                                            <div id="operator-table-div">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="operator-selection-table">
+                                                                                                          
+                                                                </tbody>
+                                                            </table>
+                                                           </div>
+                                                        </div>
+
+                                                        <div  class="table-responsive">
+                                                            <label id="booth-table-label"><strong>Select Booths</strong></label>
+                                                            <div id="booth-table-div">
+                                                           
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th id="inspection-booth-label">Booth</th>
+                                                                        <th id="inspection-location-label">Location</th>
+                                                                        <th id="inspection-status-label">Status&nbsp;</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="booth-selection-table">
+                                                                                                          
+                                                                </tbody>
+                                                            </table>
+                                                           </div>
+                                                        </div>
+
+
+
+
+
+
+                                                    </div>
+                                                    <div class="col">     
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="diffuser"><strong>Diffuser</strong></label>
+                                                            <label id="diffuser-label" class="form-label" for="diffuser"><strong>Select Diffuser</strong></label>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="diffuser_d1" name="diffuser" value="D1">
+                                                                <input id="d1-diffuser-radio" class="form-check-input" type="radio"  name="diffuser-selection" value="D1">
                                                                 <label class="form-check-label" for="diffuser_d1">D1</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="diffuser_d2" name="diffuser" value="D2">
+                                                                <input id="d2-diffuser-radio" class="form-check-input" type="radio"  name="diffuser-selection" value="D2">
                                                                 <label class="form-check-label" for="diffuser_d2">D2</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" id="diffuser_base" name="diffuser" value="Base">
+                                                                <input id="base-diffuser-radio" class="form-check-input" type="radio" name="diffuser-selection" value="Base">
                                                                 <label class="form-check-label" for="diffuser_base">Base</label>
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Qualifications</strong></label>
-                                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-26"><label class="form-check-label" for="formCheck-15">All inspectors possess the necessary qualifications?</label></div>
+                                                        <div class="mb-3"><label id="qualifications-label" class="form-label" for="qualifications-checkbox"><strong>Qualifications</strong></label>
+                                                            <div id="operator-qualifications" class="form-check"><input id="qualifications-checkbox" class="form-check-input" type="checkbox" ><label id="inspector-qualifactions-label" class="form-check-label" for="formCheck-15">All inspectors possess the necessary qualifications?</label></div>
                                                         </div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Lot Number</strong></label><input class="form-control" type="number"></div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Product Type</strong></label>
-                                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-link-color);">Select Product Type&nbsp;</button>
+                                                        <div class="mb-3"><label class="form-label" for="lot-number-textbox" ><strong>Enter Lot Number</strong></label><input id="lot-number-textbox" class="form-control" type="number"></div>
+                                                        <!-- <div class="mb-3"><label id="product-type-label" class="form-label" for="first_name"><strong>Select Product Type</strong></label>
+                                                            <div class="dropdown"><button id="product-type-dropdown-button" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-link-color);">Product Type&nbsp;</button>
                                                                 <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                                                            </div>
-                                                            <div class="dropdown" style="background: var(--bs-btn-bg);"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="margin-top: 18px;background: var(--bs-btn-bg);">Select Vial Size&nbsp;</button>
+                                                            </div> -->
+                                                            <!-- <div class="dropdown" style="background: var(--bs-btn-bg);"><button id="inspection-vial-size-dropdown-box" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="margin-top: 18px;background: var(--bs-btn-bg);">Vial Size&nbsp;</button>
                                                                 <div class="dropdown-menu">
                                                                     <a class="dropdown-item" href="javascript:void(0);">2 ml</a>
                                                                     <a class="dropdown-item" href="javascript:void(0);">5 ml</a>
@@ -389,174 +489,80 @@
                                                                     <a class="dropdown-item" href="javascript:void(0);">50 ml</a>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Tray Size</strong></label><input class="form-control" type="number" placeholder="Example: 5x10"></div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Total Tray Amount</strong></label><input class="form-control" type="number" placeholder="1,000"></div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Total Product or Vial Amount</strong></label><input class="form-control" type="number" placeholder="1,000"></div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Material Color</strong></label>
-                                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Select Cap Color</button>
-                                                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                                                            </div>
-                                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="margin-top: 18px;background: var(--bs-btn-bg);">Select Seal Color&nbsp;</button>
-                                                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Inspection Timers</strong></label>
+                                                        </div> -->
+                                                        <div class="mb-3"><label id="inspection-tray-size-label" class="form-label" for="first_name"><strong>Tray Size</strong></label><input id="inspection-tray-size-textbox" class="form-control" type="number" placeholder="Example: 5x10"></div>
+                                                        <!-- <div class="mb-3"><label id="inspection-tray-amount-label" class="form-label" for="first_name"><strong>Total Tray Amount</strong></label><input id="inspection-tray-amount-textbox" class="form-control" type="number" placeholder="1,000"></div> -->
+                                                        <!-- <div class="mb-3"><label id="inspection-total-product-label" class="form-label" for="first_name"><strong>Total Product or Vial Amount</strong></label><input id="inspection-total-product-textbox" class="form-control" type="number" placeholder="1,000"></div> -->
+                                                        <!-- <div class="mb-3"><label id="inspection-material-color-label" class="form-label" for="first_name"><strong>Select Material Color</strong></label> -->
+                                                            <!-- <div class="dropdown"><button id="inspection-cap-color-dropdown-box" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: var(--bs-btn-bg);">Select Cap Color</button> -->
+                                                                <!-- <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div> -->
+                                                            <!-- </div> -->
+                                                            <!-- <div class="dropdown"><button id="inspection-seal-color-dropdown-box" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="margin-top: 18px;background: var(--bs-btn-bg);">Select Seal Color&nbsp;</button> -->
+                                                                <!-- <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div> -->
+                                                            <!-- </div> -->
+                                                        <!-- </div> -->
+                                                        <div class="mb-3"><label id="inspection-timers-label" class="form-label" for="first_name"><strong>Inspection Timers</strong></label>
                                                             <div class="row">
                                                                 <div class="col"><label class="col-form-label">Light Timer</label></div>
-                                                            </div><input class="form-control" type="number" placeholder="1,000"><input class="form-range" type="range"><label class="form-label">Dark Timer</label><input class="form-control" type="number" placeholder="1,000"><input class="form-range" type="range"><label class="form-label">Grey Timer</label><input class="form-control" type="number" placeholder="1,000"><input class="form-range" type="range"><label class="form-label">Start Delay</label><input class="form-control" type="number" placeholder="1,000"><input class="form-range" type="range"><label class="form-label">Inspect Delay</label><input class="form-control" type="number" placeholder="1,000"><input class="form-range" type="range">
+                                                            </div><input id="inspection-light-timer-textbox" class="form-control" type="number" placeholder="1,000"><input id="inspection-light-timer-slider" class="form-range" type="range"><label class="form-label">Dark Timer</label><input id="inspection-dark-timer-textbox" class="form-control" type="number" placeholder="1,000"><input id="inspection-dark-timer-slider" class="form-range" type="range"><label  class="form-label">Grey Timer</label><input id="inspection-grey-timer-textbox" class="form-control" type="number" placeholder="1,000"><input id="inspection-grey-timer-slider" class="form-range" type="range"><label class="form-label">Start Delay</label><input id="inspection-start-delay-textbox" class="form-control" type="number" placeholder="1,000"><input id="inspection-start-delay-slider" class="form-range" type="range"><label class="form-label">Inspect Delay</label><input id="inspection-inspect-delay-textbox" class="form-control" type="number" placeholder="1,000"><input id="inspection-inspect-delay-slider" class="form-range" type="range">
                                                         </div>
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Inspection Date</strong></label><input class="form-control" type="date"></div>
+                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Inspection Date</strong></label><input id="inspection-date" class="form-control" type="date"></div>
                                                         <div class="row">
                                                             <!-- <div class="col text-center" style="margin-top: 80px;margin-bottom: 80px;"><button class="btn btn-primary" type="button" style="background: var(--bs-cyan);">Preview Operator HMI</button></div> -->
                                                             <div class="col text-center" style="margin-top: 80px; margin-bottom: 80px;">
-                                                                <a href="hmi.html" class="btn btn-primary" style="background: var(--bs-cyan);" role="button">Preview Operator HMI</a>
+                                                                <a id="inspection-preview-hmi" href="hmi.html" class="btn btn-primary" style="background: var(--bs-cyan);" role="button">Preview Operator HMI</a>
                                                             </div>
                                                             
                                                         </div>
                                                     </div>
                                                 <!-- </div> -->
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm disabled" type="submit" style="background: var(--bs-form-valid-color);" disabled="">Save Settings</button></div>
+                                                <div class="mb-3"><button id="save-inspection-settings-button" class="btn btn-primary btn-sm" type="button" style="background: var(--bs-form-valid-color);" disabled="">Save Settings</button></div>
                                             </form>
                                         </div>
                                     </div>
                                     <div class="card shadow">
                                         <div class="card-header py-3">
-                                            <p class="text-primary m-0 fw-bold">Defect Selection&nbsp;</p>
+                                            <p id="inspection-defect-selection-module" class="text-primary m-0 fw-bold">Defect Configuration&nbsp;</p>
+                                        
                                         </div>
                                         <div class="card-body">
-                                            <div class="dropdown" style="margin-bottom: 12px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Edit existing configuration&nbsp;&nbsp;</button>
-                                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+                                            <div class="dropdown" style="margin-bottom: 12px;"><button id="edit-defect-config-dropdown-box" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">View existing configuration&nbsp;&nbsp;</button>
+                                                <div id="defect-dropdown-menu-items" class="dropdown-menu"></div>
                                             </div>
                                             <form>
-                                                <div class="mb-3"><label class="form-label" for="address"><strong>Name of defect configuration</strong></label><input class="form-control" type="text" id="address" placeholder="Defect configuration name" name="address">
-                                                    <div class="table-responsive">
+                                                <div class="mb-3"><label id="defect-config-name-label" class="form-label" for="address"><strong>Enter Defect Configuration Name</strong></label><input class="form-control" type="text" id="defect-config-name-textbox" placeholder="Defect Configuration Name" name="address">
+                                                    <div class="mb-3"><label id="custom-defects-label" class="form-label" for="signature"><strong>Enter Custom Defects</strong></label><textarea id="custom-defects-textbox" class="form-control" rows="4" name="custom-defect-textarea" placeholder="Seperate custom defects with comma."></textarea></div><button id="save-custom-defects-button" class="btn btn-primary btn-sm" type="button" style="background: var(--bs-form-valid-color);" >Save Defect</button>
+                                                    <div  class="table-responsive">
+                                                        <label id="defects-table-label">Please Select Defects</label>
+                                                        <div id="defect-table-div">
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Defects</th>
+                                                                    <!-- <th id="defects-table-label">Defects</th> -->
                                                                 </tr>
                                                             </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-27"><label class="form-check-label" for="formCheck-22">Dark Fiber</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-28"><label class="form-check-label" for="formCheck-23">Light Fiber</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-29"><label class="form-check-label" for="formCheck-26">Blue Fiber</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-46"><label class="form-check-label" for="formCheck-46">Red Fiber</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-47"><label class="form-check-label" for="formCheck-47">Dark Particle</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-48"><label class="form-check-label" for="formCheck-48">Light Particle</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-43"><label class="form-check-label" for="formCheck-43">Blue Particle</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-44"><label class="form-check-label" for="formCheck-44">Red Particle</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-45"><label class="form-check-label" for="formCheck-45">Agglomeration</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-40"><label class="form-check-label" for="formCheck-40">Precipitate</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-41"><label class="form-check-label" for="formCheck-41">Turbidity</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-42"><label class="form-check-label" for="formCheck-42">Discoloration</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-37"><label class="form-check-label" for="formCheck-37">Bad Crimp</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-38"><label class="form-check-label" for="formCheck-38">Missing Seal</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-39"><label class="form-check-label" for="formCheck-39">Wrong Seal</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-30"><label class="form-check-label" for="formCheck-24">Incorrect Closure</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-31"><label class="form-check-label" for="formCheck-25">High Fill Level</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-36"><label class="form-check-label" for="formCheck-36">Low Fill Level</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-33"><label class="form-check-label" for="formCheck-33">Cracked Finish</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-34"><label class="form-check-label" for="formCheck-34">Cracked Container</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-35"><label class="form-check-label" for="formCheck-35">Custom Defect</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-32"><label class="form-check-label" for="formCheck-30">Custom Defect</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-49"><label class="form-check-label" for="formCheck-31">Custom Defect</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-50"><label class="form-check-label" for="formCheck-32">Custom Defect</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-51"><label class="form-check-label" for="formCheck-27">Custom Defect</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-52"><label class="form-check-label" for="formCheck-28">Custom Defect</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-53"><label class="form-check-label" for="formCheck-29">Custom Defect</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr></tr>
+                                                            <tbody id="defect-selection-table">
+                                                                                                      
                                                             </tbody>
                                                         </table>
+                                                       </div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: var(--bs-form-valid-color);">Save&nbsp;Defect Configuration</button></div>
+                                                <div class="mb-3"><button id="save-defect-config-button" class="btn btn-primary btn-sm" type="button" style="background: var(--bs-form-valid-color);">Save&nbsp;Defect Configuration</button></div>
                                             </form>
                                             <div class="row">
                                                 <div class="col-md-6 align-self-center">
-                                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                                    <p id="defect-config-data-table-info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                                    <nav id="inspection-defect-pages" class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                                         <ul class="pagination">
                                                             <!-- NOTE : This is being set to disabled for now. It will need to be enabled when the data is being pulled from the database. -->
-                                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                                            <!-- <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
                                                             <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
                                                             <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
                                                             <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
-                                                            <li class="page-item disabled"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                                            <li class="page-item disabled"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li> -->
                                                             <!-- NOTE : This is being set to disabled for now. It will need to be enabled when the data is being pulled from the database. -->
                                                         </ul>
                                                     </nav>
@@ -564,240 +570,181 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card shadow">
-                                        <div class="card-header py-3">
-                                            <p class="text-primary m-0 fw-bold">Operator Selection&nbsp;</p>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="dropdown" style="margin-bottom: 12px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Edit existing group&nbsp;</button>
-                                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                                            </div>
-                                            <form>
-                                                <div class="mb-3"><label class="form-label" for="address"><strong>Name of operator group</strong></label><input class="form-control" type="text" id="address-1" placeholder="Operator group name" name="address">
-                                                    <div class="table-responsive">
-                                                        <table class="table" id="operator-checkboxes">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Operators</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-80"><label class="form-check-label" for="formCheck-49">Jane Doe</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-81"><label class="form-check-label" for="formCheck-50">John Doe</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-82"><label class="form-check-label" for="formCheck-51">John Smith</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-83"><label class="form-check-label" for="formCheck-52">Jane Smith</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-84"><label class="form-check-label" for="formCheck-53">John Smith</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-54"><label class="form-check-label" for="formCheck-54">John Smith</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-55"><label class="form-check-label" for="formCheck-55">John Smith</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-56"><label class="form-check-label" for="formCheck-56">Jane Doe</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-57"><label class="form-check-label" for="formCheck-57">John Doe</label></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <!-- <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-58"><label class="form-check-label" for="formCheck-58">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-59"><label class="form-check-label" for="formCheck-59">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-60"><label class="form-check-label" for="formCheck-60">Label</label></div>
-                                                                    </td> -->
-                                                                </tr>
-                                                                <tr>
-                                                                    <!-- <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-61"><label class="form-check-label" for="formCheck-61">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-62"><label class="form-check-label" for="formCheck-62">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-63"><label class="form-check-label" for="formCheck-63">Label</label></div>
-                                                                    </td> -->
-                                                                </tr>
-                                                                <tr>
-                                                                    <!-- <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-64"><label class="form-check-label" for="formCheck-64">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-65"><label class="form-check-label" for="formCheck-65">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-66"><label class="form-check-label" for="formCheck-66">Label</label></div>
-                                                                    </td> -->
-                                                                </tr>
-                                                                <tr>
-                                                                    <!-- <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-67"><label class="form-check-label" for="formCheck-67">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-68"><label class="form-check-label" for="formCheck-68">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-69"><label class="form-check-label" for="formCheck-69">Label</label></div>
-                                                                    </td> -->
-                                                                </tr>
-                                                                <tr>
-                                                                    <!-- <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-70"><label class="form-check-label" for="formCheck-70">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-71"><label class="form-check-label" for="formCheck-71">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-72"><label class="form-check-label" for="formCheck-72">Label</label></div>
-                                                                    </td> -->
-                                                                </tr>
-                                                                <!-- <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-73"><label class="form-check-label" for="formCheck-73">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-74"><label class="form-check-label" for="formCheck-74">Label</label></div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-75"><label class="form-check-label" for="formCheck-75">Label</label></div>
-                                                                    </td>
-                                                                </tr> -->
-                                                                <tr></tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: var(--bs-form-valid-color);">Save Operator Group</button></div>
-                                            </form>
-                                            <div class="row">
-                                                <div class="col-md-6 align-self-center">
-                                                    <p id="dataTable_info_3" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                                        <!-- NOTE : This is being set to disabled for now. It will need to be enabled when the data is being pulled from the database. -->
-                                                        <ul class="pagination">
-                                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                                            <li class="page-item disabled"><a class="page-link" href="#">1</a></li> <!--This should be set to active was changed to disabled for demo-->
-                                                            <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
-                                                            <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
-                                                            <li class="page-item disabled"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                                                        </ul>
-                                                        <!-- NOTE : This is being set to disabled for now. It will need to be enabled when the data is being pulled from the database. -->
-
-                                                    </nav>
-                                                </div>
-                                            </div>
-                                        </div>
                                     
-                                    </div>
-                                    <div class="card shadow">
-                                        <div class="card-header py-3">
-                                            <p class="text-primary m-0 fw-bold">Inspection Booth Selection&nbsp;</p>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="dropdown" style="margin-bottom: 12px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Edit existing Booth configuration&nbsp;</button>
-                                                <div class="dropdown-menu"><a class="dropdown-item" href="#">Group A</a><a class="dropdown-item" href="#">Group B</a><a class="dropdown-item" href="#">Group 3</a></div>
-                                            </div>
-                                            <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="formCheck-86"><label class="form-check-label" for="formCheck-81">Select All</label></div>
-                                            <form>
-                                                <div class="mb-3"><label class="form-label" for="address"><strong>Enter Booth Configuration name</strong></label><input class="form-control" type="text" id="address-2" placeholder="Booth configuration name" name="address">
-                                                    <div class="table-responsive">
-                                                        <table class="table" id="booth-checkboxes">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Booth</th>
-                                                                    <th>Location</th>
-                                                                    <th>Status&nbsp;</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-87"><label class="form-check-label" for="formCheck-1">Booth_0001</label></div>
-                                                                    </td>
-                                                                    <td><label class="form-label">Room 101</label></td>
-                                                                    <td><label class="form-label">Active ✅</label></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-79"><label class="form-check-label" for="formCheck-79">Booth_0002</label></div>
-                                                                    </td>
-                                                                    <td><label class="form-label">Room 101</label></td>
-                                                                    <td><label class="form-label">Active ✅</label></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-78"><label class="form-check-label" for="formCheck-78">Booth_0003</label></div>
-                                                                    </td>
-                                                                    <td><label class="form-label">Room 223</label></td>
-                                                                    <td><label class="form-label">Inactive ❌</label></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-77"><label class="form-check-label" for="formCheck-77">Booth_0004</label></div>
-                                                                    </td>
-                                                                    <td><label class="form-label">Room 223</label></td>
-                                                                    <td><label class="form-label">Inactive ❌</label></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-76"><label class="form-check-label" for="formCheck-76">Booth_0005</label></div>
-                                                                    </td>
-                                                                    <td><label class="form-label">Room 101</label></td>
-                                                                    <td><label class="form-label">Active ✅</label></td>
-                                                                </tr>
-                                                                <tr></tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: var(--bs-form-valid-color);">Save Operator Group</button></div>
-                                            </form>
-                                            <div class="row">
-                                                <div class="col-md-6 align-self-center">
-                                                    <p id="dataTable_info_4" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                                        <ul class="pagination">
-                                                            <!-- NOTE : This is being set to disabled for now. It will need to be enabled when the data is being pulled from the database. -->
-                                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                                            <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
-                                                            <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
-                                                            <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
-                                                            <li class="page-item disabled"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                                                        </ul>
-                                                            <!-- NOTE : This is being set to disabled for now. It will need to be enabled when the data is being pulled from the database. -->
-                                                    </nav>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!--************* COLUMN 2 ************** -->
+                <!-- <div class="col-5"> -->
+                    <!-- <div class="card shadow"> -->
+                    <!-- <div class="card-header py-3"> -->
+                        <!-- <p id="inspection-operator-selection-module" class="text-primary m-0 fw-bold">Operator Selection&nbsp;</p> -->
+                    <!-- </div> -->
+                    <!-- <div class="card-body"> -->
+                        <!-- <div class="dropdown" style="margin-bottom: 12px;"><button id="inspection-edit-existing-group-dropdown-box" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Edit existing group&nbsp;</button> -->
+                            <!-- <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div> -->
+                        <!-- </div> -->
+                        <!-- <form>
+                            <div class="mb-3"><label class="form-label" for="address"><strong>Name of operator group</strong></label><input id="inspection-operator-group-name-textbox" class="form-control" type="text" placeholder="Operator group name" name="address">
+                                <div class="table-responsive">
+                                    <table class="table" id="operator-checkboxes">
+                                        <thead>
+                                            <tr>
+                                                <th id="inspection-operators-label" >Operators</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="inspection-operator-check-1" ><label class="form-check-label" for="formCheck-49">Jane Doe</label></div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="inspection-operator-check-2" ><label class="form-check-label" for="formCheck-50">John Doe</label></div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="inspection-operator-check-3" ><label class="form-check-label" for="formCheck-51">John Smith</label></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="inspection-operator-check-4" ><label class="form-check-label" for="formCheck-52">Jane Smith</label></div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="inspection-operator-check-5" ><label class="form-check-label" for="formCheck-53">John Smith</label></div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="inspection-operator-check-6" ><label class="form-check-label" for="formCheck-54">John Smith</label></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="inspection-operator-check-7" ><label class="form-check-label" for="formCheck-55">John Smith</label></div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="inspection-operator-check-8" ><label class="form-check-label" for="formCheck-56">Jane Doe</label></div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="inspection-operator-check-9" ><label class="form-check-label" for="formCheck-57">John Doe</label></div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="mb-3"><button id="save-operator-group-button" class="btn btn-primary btn-sm" type="button" style="background: var(--bs-form-valid-color);">Save Operator Group</button></div>
+                        </form> -->
+                        <!-- <div class="row"> -->
+                            <!-- <div class="col-md-6 align-self-center">
+                                <p id="dataTable_info_3" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                            </div> -->
+                            <!-- <div class="col-md-6"> -->
+                                <!-- <nav id="inspection-operator-selection-pages" class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers"> -->
+                                    <!-- NOTE : This is being set to disabled for now. It will need to be enabled when the data is being pulled from the database. -->
+                                    <!-- <ul class="pagination">
+                                        <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                        <li class="page-item disabled"><a class="page-link" href="#">1</a></li> <!--This should be set to active was changed to disabled for demo-->
+                                        <!-- <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item disabled"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                    </ul> -->
+                                    <!-- NOTE : This is being set to disabled for now. It will need to be enabled when the data is being pulled from the database. -->
+
+                                <!-- </nav> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                <!-- </div>  -->
+                    <!-- <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p id="inspection-booth-selection-label" class="text-primary m-0 fw-bold">Inspection Booth Selection&nbsp;</p>
+                        </div> -->
+                        <!-- <div class="card-body"> -->
+                            <!-- <div class="dropdown" style="margin-bottom: 12px;"><button id="inspection-edit-existing-booth-configuration-dropdown-box" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Edit existing Booth configuration&nbsp;</button>
+                                <div class="dropdown-menu"><a class="dropdown-item" href="#">Group A</a><a class="dropdown-item" href="#">Group B</a><a class="dropdown-item" href="#">Group 3</a></div>
+                            </div> -->
+                            <!-- <div class="form-check form-switch"><input id="inspection-select-all-switch"  class="form-check-input" type="checkbox"><label class="form-check-label" for="formCheck-81">Select All</label></div> -->
+                            <!-- <form> -->
+                                <!-- <div class="mb-3"><label class="form-label" for="address"><strong>Enter Booth Configuration name</strong></label><input id="inspection-booth-configuration-name" class="form-control" type="text"  placeholder="Booth configuration name" name="address"> -->
+                                    <!-- <div class="table-responsive"> -->
+                                        <!-- <table class="table" id="inspection-booth-checkboxes">
+                                            <thead>
+                                                <tr>
+                                                    <th id="inspection-booth-label">Booth</th>
+                                                    <th id="inspection-location-label">Location</th>
+                                                    <th id="inspection-status-label">Status&nbsp;</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-87"><label class="form-check-label" for="formCheck-1">Booth_0001</label></div>
+                                                    </td>
+                                                    <td><label class="form-label">Room 101</label></td>
+                                                    <td><label class="form-label">Active ✅</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-79"><label class="form-check-label" for="formCheck-79">Booth_0002</label></div>
+                                                    </td>
+                                                    <td><label class="form-label">Room 101</label></td>
+                                                    <td><label class="form-label">Active ✅</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-78"><label class="form-check-label" for="formCheck-78">Booth_0003</label></div>
+                                                    </td>
+                                                    <td><label class="form-label">Room 223</label></td>
+                                                    <td><label class="form-label">Inactive ❌</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-77"><label class="form-check-label" for="formCheck-77">Booth_0004</label></div>
+                                                    </td>
+                                                    <td><label class="form-label">Room 223</label></td>
+                                                    <td><label class="form-label">Inactive ❌</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-76"><label class="form-check-label" for="formCheck-76">Booth_0005</label></div>
+                                                    </td>
+                                                    <td><label class="form-label">Room 101</label></td>
+                                                    <td><label class="form-label">Active ✅</label></td>
+                                                </tr>
+                                                <tr></tr>
+                                            </tbody>
+                                        </table> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                                <!-- <div class="mb-3"><button id="inspection-save-booth-selection-configuration-btn" class="btn btn-primary btn-sm" type="submit" style="background: var(--bs-form-valid-color);">Save Booth Configuration</button></div> -->
+                            <!-- </form> -->
+                            <!-- <div class="row"> -->
+                                <!-- <div class="col-md-6 align-self-center">
+                                    <label id="booth-selection-data-table-info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</label>
+                                </div> -->
+                                <!-- <div class="col-md-6"> -->
+                                    <!-- <nav id="inspection-booth-selection-pages" class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                           
+                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item disabled"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                            
+                                    </nav> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                
+                </div>
+            </div>
+                
+            </div>
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
@@ -808,7 +755,10 @@
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/script.min.js"></script>
-    <script src="assets/js/inspections.js"></script>
+    <!-- <script src="assets/js/inspections.js"></script> -->
+    <script src="assets/js/inspection-defect-config.js"></script>
+    <script src="assets/js/inspection-setup.js"></script>
+
 </body>
 
 </html>
